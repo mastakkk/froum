@@ -55,6 +55,12 @@ require_once "../elements/header.php";
             <div class="form-form-regist">
                <p>Ok dude, u can <a href="/pages/login.php">login</a> now</p>
                <?=$errors_regist?>
+               <?
+               if (isset($_SESSION["logged_user"])) {
+                   echo "Авторизован";
+                   ?> <a href="logout.php">Выйти</a> <?
+               }
+               ?>
                <form action="" method="post" class="this-form">
                    <input type="text" name="login" class="" placeholder="Login">
                    <input type="text" name="email" class="" placeholder="Email">

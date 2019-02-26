@@ -153,8 +153,14 @@ function getPrivilege_for_user($user) {
 
 // Достает все категории
 function getCategory_all() {
-	$all_category = R::find('categories');
-	return $all_category;
+	$categories = R::find('categories');
+	return $categories;
+}
+
+// Считаем сколько всего статей в одной категгории
+function getCount_for_Category($id_category) {
+	$count_categories = R::count('singles', "WHERE id_category = $id_category");
+	return $count_categories;
 }
 
 function getCategory_reduct($single) {
