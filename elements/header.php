@@ -1,3 +1,7 @@
+<?
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +23,6 @@
             <div><a href="#">Members</a></div>
             <div><a href="#">About</a></div>
             <div><a href="#">Site Rules</a></div>
-            <div><a href="#">Contact</a></div>
+            <div><a href="/pages/regist.php">Profile</a></div>
         </header>
 <!--   header close     -->

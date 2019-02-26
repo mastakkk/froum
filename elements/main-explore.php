@@ -3,6 +3,7 @@
           
 <?
 require_once "bar.php";
+
 ?>
           
           <article class="explore-forum-title">

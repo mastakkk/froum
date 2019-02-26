@@ -1,4 +1,28 @@
 <?
+require_once "../include/db.php";
+
+if (isset($_POST['submit'])) {
+		
+    $errors = "";
+
+    $user = R::findOne('users', 'login = ?', array($_POST['login']));
+
+    if ($user) {
+        
+        if (password_verify($_POST['password'], $user->password) ) {
+            $_SESSION["logged_user"] = $user;
+
+            $success = "Авторизован";
+            // header("Location: ../index.php");
+            // exit;
+        } else {
+            $errors = "Неверный пароль";
+        }
+    } else {
+        $errors = "Пользователь с таким логином не найден";
+    }
+}
+
 require_once "../elements/header.php";
 ?>
         
@@ -9,7 +33,14 @@ require_once "../elements/header.php";
                 <h1>Have something to say? Regist now!</h1>
             </div>
             <div class="form-form-regist">
-               <p>Registrate now? U can do it dude</p>
+               <p>U can <a href="/pages/regist.php">regist</a> now dude. Rly do it</p>
+               <?=$errors?>
+               <?
+               if (isset($_SESSION["logged_user"])) {
+                   echo "Авторизован";
+                   ?> <a href="logout.php">Выйти</a> <?
+               }
+               ?>
                <form action="" method="post" class="this-form">
                    <input type="text" name="login" class="LoginOrEmail" placeholder="Login or Email">
                    <input type="password" name="password" class="" placeholder="Password">
