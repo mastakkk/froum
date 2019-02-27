@@ -47,13 +47,7 @@ function getSingles_by_pop() {
 
 
 
-// Получение категории из другой таблицы
-function getCategory_by_id($id) {
-	$categories = R::find('categories', "WHERE id = $id");
-	foreach ($categories as $category) {
-		return $category;
-	}
-}
+
 
 // Получение юзера из другой таблицы 
 function getUser_by_id($id) {
@@ -93,6 +87,14 @@ function getCount_by_singles() {
 	$pages = R::count('singles');
 	return $pages;
 }
+
+// Считаем сколько всего статей в одной категгории
+function getCount_for_Category($id_category) {
+	$count_categories = R::count('singles', "WHERE id_category = $id_category");
+	return $count_categories;
+}
+
+
 
 // Находим лайк
 function getLike_by_id($y) {
@@ -157,11 +159,7 @@ function getCategory_all() {
 	return $categories;
 }
 
-// Считаем сколько всего статей в одной категгории
-function getCount_for_Category($id_category) {
-	$count_categories = R::count('singles', "WHERE id_category = $id_category");
-	return $count_categories;
-}
+
 
 function getCategory_reduct($single) {
 	if ($single->category == 1) {
@@ -170,6 +168,18 @@ function getCategory_reduct($single) {
 		echo "selected";
 	} 
 }
+
+// Получение категории
+function getCategory_by_name($id) {
+	$category = R::findOne('categories', "WHERE id = $id");
+	return $category;
+}
+
+function getSingles_by_category($id) {
+	$singles = R::find('singles', "WHERE id_category = $id");
+	return $singles;
+}
+
 
 // Провереям на наличие лайков у пользователя
 function getLike($single, $user) {

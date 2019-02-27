@@ -24,7 +24,7 @@ $categories = getCategory_all();
                     <div class="one_category">
                         <div class="explore-bg image-slider" style="background-image: url(<?=$category->img?>)"></div>
                         <div class="text-explore">
-                            <h3><a href="singles.php?category=<?=$category->category_name?>"><?=$category->category_name?></a></h3>
+                            <h3><a href="singles.php?id_category=<?=$category->id?>"><?=$category->category_name?></a></h3>
                             <p><?=$category->views?> views | <?=$count_categories?> posts</p>
                             <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
                         </div>
