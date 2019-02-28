@@ -36,7 +36,7 @@ echo $single->id;
                 <article class="state">
                     <div class="state-under">
                         <div class="state-user">
-                            <div class="img-single">
+                            <div class="img-for-single">
                                 <img src="<?=$user->img?>" alt="">
                             </div>
                             <div class="under-state-user">
@@ -51,7 +51,7 @@ echo $single->id;
                             </div>
                         </div>
                         <div class="title-under-state"><?=$single->title?></div>
-                        <a href="#">
+                        <a href="state.php?id_single=<?=$single->id?>">
                                 <div class="text-under-state"><?=$single->text?></div>
                         </a>
                     </div>

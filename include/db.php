@@ -17,6 +17,12 @@ function getSingles_all() {
 	return $singles;
 }
 
+
+function getSingle_by_id($id) {
+	$single = R::findOne('singles', "WHERE id = $id");
+	return $single;
+}
+
 // Получение всех популярных статей
 function getSingles_by_pop_all() {
 	$singles = R::find('singles', "ORDER BY views DESC");
@@ -97,9 +103,9 @@ function getCount_for_Category($id_category) {
 
 
 // Находим лайк
-function getLike_by_id($y) {
-	$likes = R::find('likes', "WHERE id_single = $y");
-	return $likes;
+function getLike_by_id($y, $x) {
+	$like = R::findOne('likes', "WHERE id_single = $y AND id_user_id = $x");
+	return $like;
 }
 
 // Считает лайки

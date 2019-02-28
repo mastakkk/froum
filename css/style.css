@@ -211,7 +211,7 @@ footer {
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;
-    -webkit-font-smoothing: antialiased;f189
+    -webkit-font-smoothing: antialiased;
   }
 .facebook::before {
     font-family: "Font Awesome 5 Brands"; content: "\f09a";
@@ -447,12 +447,22 @@ button {
 }
 
 .state .img-single img {
-    width: 128px;
-    margin: 0 30px 0 0;
+    width: 690px;
+    margin: 0 30px 0 50px;
+
+}
+
+.img-for-single img{
+    width: 100px;
+    height: 100px;
     border: 1px solid #000;
     border-radius: 100px;
 }
-
+.img-for-single {
+    width: 110px;
+    background: #fff;
+    float: left;
+}
 
 
 .comm-view-single div {
@@ -508,7 +518,7 @@ button {
     margin: 0 0 0 50px;
 }
 
-create-comment-under {
+.create-comment-under {
     margin: 0 0 0 50px;
 }
 
@@ -535,15 +545,17 @@ create-comment-under {
 }
 
 .img-comment {
-    width: 100px;
-    height: 100px;
-    background: #fff;
+
     border: 1px solid #000;
     border-radius: 100px;
+
+    float: left;
+}
+
+.img-comment {
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat; 
-    float: left;
 }
 
 .author-comment {
@@ -700,7 +712,7 @@ create-comment-under {
     border-radius: 0%;
     transform: rotate(-45deg);
   }
-  .container input: placeholder {
+  .container input:placeholder {
     color: white;
     opacity: 0.5;
     font-weight: bolder;

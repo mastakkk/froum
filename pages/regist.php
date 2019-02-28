@@ -58,6 +58,8 @@ require_once "../elements/header.php";
                <?
                if (isset($_SESSION["logged_user"])) {
                    echo "Авторизован";
+                   echo "<br>";
+                   echo $_SESSION["logged_user"]->login;
                    ?> <a href="logout.php">Выйти</a> <?
                }
                ?>

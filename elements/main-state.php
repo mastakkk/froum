@@ -2,6 +2,12 @@
           
 <?
 require_once "bar.php";
+
+$single = getSingle_by_id($_GET["id_single"]);
+$user = GetUser($single->id_user);
+$like = getLike_by_id($single->id, $_SESSION["logged_user"]->id);
+
+$comments = getComments_all($single->id);
 ?>
            
            
@@ -9,9 +15,9 @@ require_once "bar.php";
            <article class="state">
                <div class="state-under">
                    <div class="state-user">
-                       <div>
-                           <img src="/img/user.png" alt="">
-                       </div>
+                             <div class="img-for-single">
+                                <img src="<?=$user->img?>" alt="">
+                            </div>
                        <div class="under-state-user">
                            <div class="nickname-state">Admin</div>
                            <div class="data-state">Jun 2, 2018</div>
@@ -23,19 +29,25 @@ require_once "bar.php";
                            <img src="/img/триточки.png" alt="">
                        </div>
                    </div>
-                   <div class="title-under-state">Title text</div>
+                   <div class="title-under-state"><?=$single->title?></div>
                    <div class="comm-view-single">
-                       <div class="comm">0 comments</div>
-                       <div>84 views</div>
+                       <div class="comm"><?=$single->comments?> comments</div>
+                       <div><?=$single->views?> views</div>
                    </div>
-                   <div class="text-under-single">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ipsum optio possimus magnam, modi, quas assumenda corporis provident iure blanditiis quasi quod rem molestias nulla dolores, deleniti nostrum earum at.</div>
+                   <div class="text-under-single"><?=$single->text?></div>
                </div>
                <div class="img-single">
-                   <img src="/img/mm.jpg" alt="">
+                   <img src="<?=$single->img?>" alt="">
                </div>
                <div class="footer-state">
                    <div class="comment-count"><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a></div>
-                  <div class="likes"><a href="#">0 <i class="fa fa-heart" aria-hidden="true"></i></a></div>
+                  <div class="likes"><a href="#"><?=$single->likes?> <?
+                  if ($like->id_user_id == $_SESSION["logged_user"]->id) {?>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: red"></i>
+                  <?} else {?>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                  <?}
+                  ?></a></div>
                </div>
            </article>
 <!-- main state close   -->
@@ -52,22 +64,29 @@ require_once "bar.php";
            
            
 <!--     comment open      -->
-           <article class="comment">
-                <div class="under-comment">
-                  <div class="img-comment" style="background-image: url(/img/artist3.PNG)"></div>
-                   <div class="author-comment">
-                       <p>Admin</p>
-                   </div>
-                   <div class="date-comment">
-                       Feb 12, 2019
-                   </div>
-                   <div class="delete_button_comment">
-                       <button>Удалить</button>
-                   </div>
-                   <div class="text-comment">
-                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eos iusto alias officiis, inventore ipsa sapiente, dicta praesentium molestiae ut debitis amet nulla at accusamus fugit enim adipisci. Totam consequatur impedit quaerat alias sint quisquam dolores blanditiis consectetur magnam eveniet quod, quia animi! Repellendus quam assumenda autem culpa modi amet harum quibusdam repudiandae nam laudantium pariatur perferendis perspiciatis ipsum, quas iusto facilis, excepturi, fuga praesentium earum. Deleniti sunt hic quis nisi placeat ipsa deserunt tempore nemo, explicabo velit perspiciatis, necessitatibus aut nihil, recusandae vel officiis dolorem exercitationem? Ipsa veniam fugiat beatae, rerum perspiciatis ratione non dicta, sapiente voluptatem, cumque dolorum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius dolore nihil rerum iusto exercitationem? Laborum quas eius libero pariatur modi, expedita enim dolores autem laudantium veniam similique. Omnis impedit atque consequatur sint hic velit nesciunt aliquid sunt illo quis neque facere odit alias perspiciatis reiciendis at optio dignissimos id repellat odio, rem assumenda suscipit vero? Rem totam inventore reprehenderit asperiores officia, accusantium ut debitis laboriosam, labore a aperiam quisquam vero praesentium suscipit necessitatibus, earum repellendus atque itaque. Debitis, iste, velit. Assumenda, excepturi! Totam possimus omnis inventore maxime magnam quidem, officiis quae. Culpa libero sit incidunt voluptas ut reprehenderit possimus harum! </p>
-                   </div>
-                </div>
-           </article>
+            <?
+            foreach ($comments as $comment) {
+                $user_comment = getUser($comment->id_user);?>
+
+                <article class="comment">
+                    <div class="under-comment">
+                        <div class="img-for-single">
+                            <img src="<?=$user_comment->img?>" alt="">
+                        </div>
+                        <div class="author-comment">
+                            <p><?=$user_comment->login?></p>
+                        </div>
+                        <div class="date-comment">
+                            <?=$comment->date?>
+                        </div>
+                        <div class="delete_button_comment">
+                            <button>Удалить</button>
+                        </div>
+                        <div class="text-comment">
+                            <p><?=$comment->text?></p>
+                        </div>
+                    </div>
+                </article>
+            <?}?>
 <!--     comment close      -->
        </main>
