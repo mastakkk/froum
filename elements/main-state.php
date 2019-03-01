@@ -3,11 +3,31 @@
 <?
 require_once "bar.php";
 
-$single = getSingle_by_id($_GET["id_single"]);
 $user = GetUser($single->id_user);
 $like = getLike_by_id($single->id, $_SESSION["logged_user"]->id);
 
+
+$you = $_SESSION["logged_user"];
 $comments = getComments_all($single->id);
+
+// Лайк лайк опен
+if (isset($_POST["submit_like_unset"])) {
+    $like_unset = R::findOne('likes', "WHERE id_user_id = $you->id AND id_single = $single->id");
+
+    R::trash($like_unset);
+}
+if (isset($_POST["submit_like_set"])) {
+    $like_set = R::dispense('likes');
+
+    $like_set->id_single = $single->id;
+    $like_set->id_user_id = $you->id;
+
+    R::store($like_set);
+}
+
+$likes_count = getCount_like($_GET["id_single"]);
+// Лайк лайк клоуз
+
 ?>
            
            
@@ -19,8 +39,8 @@ $comments = getComments_all($single->id);
                                 <img src="<?=$user->img?>" alt="">
                             </div>
                        <div class="under-state-user">
-                           <div class="nickname-state">Admin</div>
-                           <div class="data-state">Jun 2, 2018</div>
+                           <div class="nickname-state"><?=$user->login?></div>
+                           <div class="data-state"><?=$single->date?></div>
                        </div>
                        <div>
                            <img src="/img/флажок.png" alt="">
@@ -41,23 +61,27 @@ $comments = getComments_all($single->id);
                </div>
                <div class="footer-state">
                    <div class="comment-count"><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a></div>
-                  <div class="likes"><a href="#"><?=$single->likes?> <?
-                  if ($like->id_user_id == $_SESSION["logged_user"]->id) {?>
-                    <i class="fa fa-heart" aria-hidden="true" style="color: red"></i>
-                  <?} else {?>
-                      <i class="fa fa-heart" aria-hidden="true"></i>
-                  <?}
-                  ?></a></div>
+                  <div class="likes"><p><?=$likes_count?></p>
+
+                  <form action="" method="post">
+                    <?if (isset($like)) {?>
+                        <button type="submit" name="submit_like_unset"><i class="fa fa-heart" aria-hidden="true" style="color: red"></i></button>
+                    <?} else {?>
+                        <button type="submit" name="submit_like_set"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                    <?}?>
+                  </form>
+                  
+                </div>
                </div>
            </article>
 <!-- main state close   -->
            
 <!--     create comment open      -->
            <article class="create-comment">
-                    <form action="">
+                    <form action="" method="post">
                        <p>Введите комментарий</p>
                         <input type="text" class="create-comment-text">
-                        <input type="submit">
+                        <input type="submit" name="create-comment-submit">
                     </form>
            </article>
 <!--      create comment close     -->
