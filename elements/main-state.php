@@ -28,6 +28,24 @@ if (isset($_POST["submit_like_set"])) {
 $likes_count = getCount_like($_GET["id_single"]);
 // Лайк лайк клоуз
 
+if (isset($_POST["create_comment_submit"])) {
+
+    $errors_comment = "";
+
+    if ($_POST["create_comment_text"] = "") {
+        $errors_comment = "Заполните поле текста";
+    }
+    if (empty($errors_comment)) {
+        $new_comment = R::dispense('comments');
+
+        $new_comment->id_user = $_SESSION["logged_user"]->id;
+        $new_comment->id_single = $single->id;
+        $new_comment->text = $_POST["create_comment_text"];
+
+        R::store($new_comment);
+    }
+}
+
 ?>
            
            
@@ -80,8 +98,8 @@ $likes_count = getCount_like($_GET["id_single"]);
            <article class="create-comment">
                     <form action="" method="post">
                        <p>Введите комментарий</p>
-                        <input type="text" class="create-comment-text">
-                        <input type="submit" name="create-comment-submit">
+                        <input type="text" name="create_comment_text" class="create_comment_text">
+                        <input type="submit" name="create_comment_submit">
                     </form>
            </article>
 <!--      create comment close     -->
