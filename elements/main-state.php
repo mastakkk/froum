@@ -29,10 +29,8 @@ $likes_count = getCount_like($_GET["id_single"]);
 // Лайк лайк клоуз
 
 if (isset($_POST["create_comment_submit"])) {
-
     $errors_comment = "";
-
-    if ($_POST["create_comment_text"] = "") {
+    if (empty($_POST["create_comment_text"])) {
         $errors_comment = "Заполните поле текста";
     }
     if (empty($errors_comment)) {
@@ -97,8 +95,10 @@ if (isset($_POST["create_comment_submit"])) {
 <!--     create comment open      -->
            <article class="create-comment">
                     <form action="" method="post">
-                       <p>Введите комментарий</p>
-                        <input type="text" name="create_comment_text" class="create_comment_text">
+                       <p>Введите комментарий <?
+                       echo $errors_comment;
+                       ?></p>
+                       <textarea name="create_comment_text" id="" cols="50" rows="4" placeholder="Введи коммент"></textarea>
                         <input type="submit" name="create_comment_submit">
                     </form>
            </article>
