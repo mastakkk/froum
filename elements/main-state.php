@@ -3,11 +3,13 @@
 <?
 require_once "bar.php";
 
-$user = GetUser($single->id_user);
-$like = getLike_by_id($single->id, $_SESSION["logged_user"]->id);
-
-
 $you = $_SESSION["logged_user"];
+
+$user = GetUser($single->id_user);
+$like = getLike_by_id($single->id, $you->id);
+
+
+
 $comments = getComments_all($single->id);
 
 // Лайк лайк опен
@@ -44,8 +46,9 @@ if (isset($_POST["create_comment_submit"])) {
     }
 }
 
-?>
-           
+
+
+?>       
            
 <!--     main-state      -->
            <article class="state">
@@ -106,10 +109,8 @@ if (isset($_POST["create_comment_submit"])) {
            
            
 <!--     comment open      -->
-            <?
-            foreach ($comments as $comment) {
+            <?foreach ($comments as $comment) {
                 $user_comment = getUser($comment->id_user);?>
-
                 <article class="comment">
                     <div class="under-comment">
                         <div class="img-for-single">
@@ -122,7 +123,13 @@ if (isset($_POST["create_comment_submit"])) {
                             <?=$comment->date?>
                         </div>
                         <div class="delete_button_comment">
-                            <button>Удалить</button>
+                            <?
+                            if ($you->id == $comment->id_user || $_SESSION["logged_user"]->privilege == 3 || $_SESSION["logged_user"]->privilege == 2) {?>
+                                <form action="" method="post">
+                                    <button type="submit" name="delete_comment"><a href="state.php?id_single=<?=$single->id?>&comm=<?=$comment->id?>">Удалить</a></button>
+                                </form>
+                            <?}?>
+
                         </div>
                         <div class="text-comment">
                             <p><?=$comment->text?></p>

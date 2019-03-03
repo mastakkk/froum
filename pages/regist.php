@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
         $user->login = $_POST["login"];
         $user->email = $_POST["email"];
         $user->password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        $user->img = "img/img-user.jpg";
+        $user->img = "/img/img-user.jpg";
         $user->ip = $_SERVER["REMOTE_ADDR"];
         $user->privilege = 1;
 
