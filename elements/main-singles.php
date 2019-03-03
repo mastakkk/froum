@@ -6,6 +6,9 @@ require_once "bar.php";
 
  $category = getCategory_by_name($_GET["id_category"]);
 
+
+ views_update_category($category->id);
+ 
  $singles = getSingles_by_category($_GET["id_category"]);
 
 echo $single->id;

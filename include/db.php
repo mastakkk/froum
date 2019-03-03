@@ -128,6 +128,11 @@ function views_update($id) {
 	return $views;
 }
 
+function views_update_category($id) {
+	$views_category = R::exec("UPDATE `categories` SET views = views + 1 WHERE id = $id");
+	return $views_category;
+}
+
 // Определяет чья эта статья 
 function getYour_state($id_single, $id_user) {
 	$your_state = R::find('singles', "WHERE id = $id_single, id_user = $id_user");
