@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
         $user->login = $_POST["login"];
         $user->email = $_POST["email"];
         $user->password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        $user->img = "img/img-user.jpg";
+        $user->img = "/img/img-user.jpg";
         $user->ip = $_SERVER["REMOTE_ADDR"];
         $user->privilege = 1;
 
@@ -55,6 +55,14 @@ require_once "../elements/header.php";
             <div class="form-form-regist">
                <p>Ok dude, u can <a href="/pages/login.php">login</a> now</p>
                <?=$errors_regist?>
+               <?
+               if (isset($_SESSION["logged_user"])) {
+                   echo "Авторизован";
+                   echo "<br>";
+                   echo $_SESSION["logged_user"]->login;
+                   ?> <a href="logout.php">Выйти</a> <?
+               }
+               ?>
                <form action="" method="post" class="this-form">
                    <input type="text" name="login" class="" placeholder="Login">
                    <input type="text" name="email" class="" placeholder="Email">

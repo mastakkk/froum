@@ -17,6 +17,12 @@ function getSingles_all() {
 	return $singles;
 }
 
+
+function getSingle_by_id($id) {
+	$single = R::findOne('singles', "WHERE id = $id");
+	return $single;
+}
+
 // Получение всех популярных статей
 function getSingles_by_pop_all() {
 	$singles = R::find('singles', "ORDER BY views DESC");
@@ -47,13 +53,7 @@ function getSingles_by_pop() {
 
 
 
-// Получение категории из другой таблицы
-function getCategory_by_id($id) {
-	$categories = R::find('categories', "WHERE id = $id");
-	foreach ($categories as $category) {
-		return $category;
-	}
-}
+
 
 // Получение юзера из другой таблицы 
 function getUser_by_id($id) {
@@ -94,10 +94,18 @@ function getCount_by_singles() {
 	return $pages;
 }
 
+// Считаем сколько всего статей в одной категгории
+function getCount_for_Category($id_category) {
+	$count_categories = R::count('singles', "WHERE id_category = $id_category");
+	return $count_categories;
+}
+
+
+
 // Находим лайк
-function getLike_by_id($y) {
-	$likes = R::find('likes', "WHERE id_single = $y");
-	return $likes;
+function getLike_by_id($y, $x) {
+	$like = R::findOne('likes', "WHERE id_single = $y AND id_user_id = $x");
+	return $like;
 }
 
 // Считает лайки
@@ -118,6 +126,11 @@ function getCount_comments($id) {
 function views_update($id) {
 	$views = R::exec("UPDATE `singles` 	SET views = views + 1 WHERE id = $id");
 	return $views;
+}
+
+function views_update_category($id) {
+	$views_category = R::exec("UPDATE `categories` SET views = views + 1 WHERE id = $id");
+	return $views_category;
 }
 
 // Определяет чья эта статья 
@@ -153,9 +166,11 @@ function getPrivilege_for_user($user) {
 
 // Достает все категории
 function getCategory_all() {
-	$all_category = R::find('categories');
-	return $all_category;
+	$categories = R::find('categories');
+	return $categories;
 }
+
+
 
 function getCategory_reduct($single) {
 	if ($single->category == 1) {
@@ -164,6 +179,18 @@ function getCategory_reduct($single) {
 		echo "selected";
 	} 
 }
+
+// Получение категории
+function getCategory_by_name($id) {
+	$category = R::findOne('categories', "WHERE id = $id");
+	return $category;
+}
+
+function getSingles_by_category($id) {
+	$singles = R::find('singles', "WHERE id_category = $id");
+	return $singles;
+}
+
 
 // Провереям на наличие лайков у пользователя
 function getLike($single, $user) {

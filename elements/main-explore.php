@@ -4,6 +4,10 @@
 <?
 require_once "bar.php";
 
+$categories = getCategory_all();
+
+
+
 ?>
           
           <article class="explore-forum-title">
@@ -12,60 +16,22 @@ require_once "bar.php";
           </article>
           
           <article class="explore-categories">
-             
-              <div class="one_category">
-                 <div class="explore-bg image-slider" style="background-image: url(/img/56986902.jpg)"></div>
-                   <div class="text-explore">
-                     <h3><a href="#">Music tert</a></h3>
-                     <p>187 views | 6 posts</p>
-                     <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
-                 </div>
-              </div>
+             <?
+                foreach ($categories as $category) {
+
+                    $count_categories = getCount_for_Category($category->id);?>
+
+                    <div class="one_category">
+                        <div class="explore-bg image-slider" style="background-image: url(<?=$category->img?>)"></div>
+                        <div class="text-explore">
+                            <h3><a href="singles.php?id_category=<?=$category->id?>"><?=$category->category_name?></a></h3>
+                            <p><?=$category->views?> views | <?=$count_categories?> posts</p>
+                            <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
+                        </div>
+                    </div>
+                <?}
+             ?>
               
-              <div class="one_category">
-                  <div class="explore-bg image-slider" style="background-image: url(/img/justin.jpg)"></div>
-                   <div class="text-explore">
-                     <h3><a href="#">Music tert</a></h3>
-                     <p>187 views | 6 posts</p>
-                     <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
-                 </div>
-              </div>
-              
-              <div class="one_category">
-                  <div class="explore-bg image-slider" style="background-image: url(/img/artist2.PNG)"></div>
-                   <div class="text-explore">
-                     <h3><a href="#">Music tert</a></h3>
-                     <p>187 views | 6 posts</p>
-                     <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
-                 </div>
-              </div>
-              
-              <div class="one_category">
-                  <div class="explore-bg image-slider" style="background-image: url(/img/%D0%BB%D0%B5%D0%B2%D1%8B%D0%B9_%D1%87%D0%B5%D0%BB.jpg)"></div>
-                   <div class="text-explore">
-                     <h3><a href="#">Music tert</a></h3>
-                     <p>187 views | 6 posts</p>
-                     <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
-                 </div>
-              </div>
-              
-              <div class="one_category">
-                  <div class="explore-bg image-slider" style="background-image: url(/img/artist3.PNG)"></div>
-                   <div class="text-explore">
-                     <h3><a href="#">Music tert</a></h3>
-                     <p>187 views | 6 posts</p>
-                     <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
-                 </div>
-              </div>
-              
-              <div class="one_category">
-                  <div class="explore-bg image-slider" style="background-image: url(/img/%D1%83%D0%B6%D0%B0%D1%81.jpg)"></div>
-                   <div class="text-explore">
-                     <h3><a href="#">Music tert</a></h3>
-                     <p>187 views | 6 posts</p>
-                     <p class="under-text-explore">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, eius.</p>
-                 </div>
-              </div>
           </article>
       </main>
       <!-- main explore close -->
