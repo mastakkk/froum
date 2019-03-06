@@ -258,6 +258,16 @@ footer {
     border-bottom: 1px solid #fff;
     padding: 0 0 2px 0;
 }
+
+.right-side-settings form input {
+    height: 20px;
+    background: black;
+    color: white;
+    border: 0;
+    border: 1px solid #fff;
+    padding: 3px 0 3px 3px;
+}
+
 .menu-explore div button {
     background: black;
     color: white;
@@ -462,6 +472,14 @@ button {
     width: 110px;
     background: #fff;
     float: left;
+}
+
+.img-settings img {
+    width: 150px;
+    height: 150px;
+    border: 1.5px solid #fff;
+    border-radius: 100px;
+    margin: 0 0 0 0;
 }
 
 

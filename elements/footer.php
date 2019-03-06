@@ -1,5 +1,5 @@
 <!-- footer open -->
-<footer>
+        <footer>
             <div class="grid-footer">
                 <a href="#"><div class="icon facebook"></div></a>
                 <a href="#"><div class="icon twitter"></div></a>

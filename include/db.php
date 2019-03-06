@@ -151,6 +151,7 @@ function getUser($id) {
 }
 
 
+
 // Определяет привилегию
 function getPrivilege_for_user($user) {
 	$user_privilege = "";
@@ -196,6 +197,17 @@ function getSingles_by_category($id) {
 function getLike($single, $user) {
 	$getLike = R::exec("SELECT * FROM `likes` WHERE `id_single` = $single AND `id_user_id` = $user");
 	return $getLike;
+}
+
+// Найти все статьи пользователя\
+function getStates_for_one_user($user) {
+	$getstates = R::find('singles', "WHERE id_user = $user");
+	return $getstates;
+}
+// Найти все лайки пользователя\
+function getLikes_for_one_user($user) {
+	$yes_getlikes = R::find('likes', "WHERE id_user_id = $user");
+	return $yes_getlikes;
 }
 
 ?>
