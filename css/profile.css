@@ -58,7 +58,7 @@
     width: 400px;
     float: right;
     list-style-type: none;
-    margin: 0 0 20px 0;
+    margin: 0 0 15px 0;
 }
 
 .right-side-profile ul li span {
@@ -136,4 +136,13 @@
 .center-create {
     width: 500px;
     margin: 0 auto;
+}
+
+.comment {
+    padding: 0 0 10px 0;
+    margin: 0 0 0 0;
+}
+
+.under-comment {
+    padding: 10px 0 0 0;
 }

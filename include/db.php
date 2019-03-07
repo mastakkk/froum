@@ -210,4 +210,10 @@ function getLikes_for_one_user($user) {
 	return $yes_getlikes;
 }
 
+// Найти все комментарии одного пользователя
+function getComm_by_id($user) {
+	$getcomm = R::find('comments', "WHERE id_user = $user");
+	return $getcomm;
+}
+
 ?>

@@ -25,6 +25,11 @@
                         <li><span>Почта: <?=$user_profile->email?></span></li>
                         <li><span>Статус: </span><?=$user_profile->status?></li>
                         <li><div style="color: green">Online</div><div style="color: darkred">Offline</div></li>
+                        <?
+                        if ($_SESSION["logged_user"]->id == $user_profile->id) {?>
+                            <li><a href="settings.php?id_user=<?=$_SESSION["logged_user"]->id?>">Настройки</a> | <a href="logout.php">Выйти</a></li>
+                        <?}
+                        ?>
                     </ul>
                 </div>
             </article>
@@ -66,10 +71,10 @@
                                         <div class="data-state"><?=$user_profile->date?></div>
                                     </div>
                                     <div>
-                                        <img src="img/флажок.png" alt="">
+                                        <img src="/img/flag.png" alt="">
                                     </div>
                                     <div>
-                                        <img src="img/триточки.png" alt="">
+                                        <img src="/img/three.png" alt="">
                                     </div>
                                 </div>
                                 <div class="title-under-state"><?=$getstate->title?></div>
@@ -89,10 +94,74 @@
                     </article>
                 <?}
             } elseif ($_GET["block"] == 'likes') {
-                $yes_getlike = getLikes_for_one_user($user_profile->id);
+                $yes_getlikes = getLikes_for_one_user($user_profile->id);
                 foreach ($yes_getlikes as $yes_getlike) {
-                    echo 123;
-                }
+                    $getlike = getSingle_by_id($yes_getlike->id_single);
+                    $getuser_by_like = getUser($getlike->id_user);
+                    ?>
+                    <article>
+                        <div class="state">
+                            <div class="state-under">
+                                <div class="state-user">
+                                    <div class="img-for-single">
+                                        <img src="<?=$getuser_by_like->img?>" alt="">
+                                    </div>
+                                    <div class="under-state-user">
+                                        <div class="nickname-state"><?=$getuser_by_like->login?></div>
+                                        <div class="data-state"><?=$getuser_by_like->date?></div>
+                                    </div>
+                                    <div>
+                                        <img src="/img/flag.png" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="/img/three.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="title-under-state"><?=$getlike->title?></div>
+                                <a href="state.php?id_single=<?=$getlike->id?>">
+                                        <div class="text-under-state"><?=$getlike->text?></div>
+                                </a>
+                            </div>
+                            <div class="img-state">
+                                <img src="<?=$getlike->img_preview?>" alt="">
+                            </div>
+                            <div class="footer-state">
+                                <div><?=$getlike->comments?> comments</div>
+                                <div><?=$getlike->views?> views</div>
+                                <div><?=$getlike->likes?> likes</div>
+                            </div>
+                        </div>
+                    </article>
+                <?}
+            } elseif ($_GET["block"] == 'comments') {
+                $getcomms = getComm_by_id($user_profile->id);
+                foreach ($getcomms as $getcomm) {?>
+                    <article class="comment">
+                        <div class="under-comment">
+                            <div class="img-for-single">
+                                <img src="<?=$user_profile->img?>" alt="">
+                            </div>
+                            <div class="author-comment">
+                                <p><?=$user_profile->login?></p>
+                            </div>
+                            <div class="date-comment">
+                                <?=$getcomm->date?>
+                            </div>
+                            <div class="delete_button_comment">
+                                <?
+                                if ($SESSION["logged_user"]->id == $getcomm->id_user || $_SESSION["logged_user"]->privilege == 3 || $_SESSION["logged_user"]->privilege == 2) {?>
+                                    <form action="" method="post">
+                                        <button type="submit" name="delete_comment"><a href="state.php?id_single=<?=$single->id?>&comm=<?=$getcomm->id?>">Удалить</a></button>
+                                    </form>
+                                <?}?>
+
+                            </div>
+                            <div class="text-comment">
+                                <p><?=$getcomm->text?></p>
+                            </div>
+                        </div>
+                    </article>
+                <?}
             }
             ?>
             
