@@ -6,7 +6,6 @@
 
     $user_privilege = getPrivilege_for_user($_SESSION["logged_user"]);
 
-
 ?>
         <main class="profile">
             <article class="real-profile">
@@ -27,7 +26,7 @@
                         <li><div style="color: green">Online</div><div style="color: darkred">Offline</div></li>
                         <?
                         if ($_SESSION["logged_user"]->id == $user_profile->id) {?>
-                            <li><a href="settings.php?id_user=<?=$_SESSION["logged_user"]->id?>">Настройки</a> | <a href="logout.php">Выйти</a></li>
+                            <li><a href="settings.php?id_user=<?=$_SESSION["logged_user"]->id?>&block=profile">Настройки</a> | <a href="logout.php">Выйти</a></li>
                         <?}
                         ?>
                     </ul>

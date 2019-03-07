@@ -25,10 +25,10 @@
             <div><a href="#">About</a></div>
             <div><a href="#">Site Rules</a></div>
             <div><a href="<?
-            if (isset($_POST["logged_user"])) {?>
-                /pages/regist.php
-            <?} else {?>
+            if (isset($_SESSION["logged_user"])) {?>
                 /pages/profile.php?id_profile=<?=$_SESSION["logged_user"]->id?>&block=posts
+            <?} else {?>
+                /pages/login.php
             <?}
             ?>">Profile</a></div>
         </header>
