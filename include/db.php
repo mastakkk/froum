@@ -10,6 +10,14 @@ if (!R::testConnection()) {
 	exit('Нет подключине');
 }
 
+if (!isset($_SESSION["logged_user"])) {
+	if ($title == "Login" || $title == "Regist") {
+		
+	} else {
+		header("Location: login.php");
+	}
+}
+
 
 // Получение самой статьи 
 function getSingles_all() {

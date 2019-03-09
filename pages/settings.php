@@ -1,4 +1,5 @@
 <?
+    $title = "Settings";
     require_once "../include/db.php";
     // if (isset($_POST["submit_change"])) {
     //     header()
@@ -91,7 +92,10 @@
                         </ul>
                     </div>
                     <div class="right-side-settings">
-                        
+                        <?$getstates = getStates_for_one_user($user->id);
+                        foreach ($getstates as $getstate) {?>
+
+                        <?}?>
                     </div>
                 </article>
         <?}

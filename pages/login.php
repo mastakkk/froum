@@ -1,5 +1,10 @@
 <?
+$title = "Login";
 require_once "../include/db.php";
+
+if (isset($_SESSION["logged_user"])) {
+    header("Location: profile.php?id_profile=".$_SESSION["logged_user"]->id);
+}
 
 if (isset($_POST['submit'])) {
 		

@@ -1,10 +1,15 @@
 <?
+    $title = "Profile";
     require_once "../include/db.php";
     require_once "../elements/header.php";
 
     $user_profile = getUser($_GET["id_profile"]);
 
     $user_privilege = getPrivilege_for_user($_SESSION["logged_user"]);
+
+    if ($_GET["block"] == false) {
+        $_GET["block"] = "posts";
+    }
 
 ?>
         <main class="profile">
@@ -78,7 +83,13 @@
                                 </div>
                                 <div class="title-under-state"><?=$getstate->title?></div>
                                 <a href="state.php?id_single=<?=$getstate->id?>">
-                                        <div class="text-under-state"><?=$getstate->text?></div>
+                                        <div class="text-under-state"><?
+                                        if (strpos($getstate->text, "<br>") == true) {
+                                            echo htmlspecialchars(substr($getstate->text, 0, strpos($getstate->text, "<br>")));
+                                        } else { 
+                                            echo htmlspecialchars($getstate->text);
+                                        }
+                                        ?></div>
                                 </a>
                             </div>
                             <div class="img-state">
@@ -118,7 +129,12 @@
                                 </div>
                                 <div class="title-under-state"><?=$getlike->title?></div>
                                 <a href="state.php?id_single=<?=$getlike->id?>">
-                                        <div class="text-under-state"><?=$getlike->text?></div>
+                                        <div class="text-under-state"><?
+                                        if (strpos($getlike->text, "<br>") == true) {
+                                            echo htmlspecialchars(substr($getlike->text, 0, strpos($getlike->text, "<br>")));
+                                        } else { 
+                                            echo htmlspecialchars($getlike->text);
+                                        }?></div>
                                 </a>
                             </div>
                             <div class="img-state">

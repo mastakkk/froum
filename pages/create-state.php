@@ -1,6 +1,42 @@
 <?
     require_once "../include/db.php";
+
+    if (isset($_POST["submit_create"])) {
+        $errors_create = "";
+
+        if (empty($_POST["text_create"])) {
+            $errors_create = "Введите текст статьи";
+        }
+
+        if (empty($_POST["list"])) {
+            $errors_create = "Выберите категорию";
+        }
+
+        if (empty($_POST["title"])) {
+            $errors_create = "Введите название";
+        }
+
+        require "../elements/upload-img.php";
+
+        if (empty($errors_create)) {
+            $create_state = R::dispense('singles');
+
+            $create_state->title = $_POST["title"];
+            $create_state->text = html_entity_decode($_POST["text_create"]);
+            $create_state->id_category = $_POST["list"];
+            $create_state->id_user = $_SESSION["logged_user"]->id;
+            if (isset($_FILES['image'])) {
+                $create_state->img_preview = "/img/".$_FILES['image']['name'];
+            }
+
+            R::store($create_state);
+            header("Location: singles.php?id_category=".$_POST["list"]);
+        }
+    }
+
     require_once "../elements/header.php";
+
+
 ?>
         <article class="create-new-post">
             <div class="center-create">

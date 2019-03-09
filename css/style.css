@@ -393,6 +393,10 @@ button {
     margin: 20px 0 20px 0;
 }
 
+.create-post a:hover {
+    border-bottom: 1px solid #fff;
+}
+
 /*Category close*/
 
 /*state open*/
@@ -464,6 +468,13 @@ button {
     width: 690px;
     margin: 0 30px 0 50px;
 
+}
+
+.text-under-single img {
+    width: auto;
+    max-width: 690px;
+    margin: 0 30px 0 0;
+    white-space: pre-line;
 }
 
 .img-for-single img{
@@ -806,4 +817,16 @@ button {
     float: left;
     list-style-type: none;
     margin: 0 5px 0 0;
+}
+
+.menu-explore-title a:hover {
+    border-bottom: 1px solid #fff;
+}
+
+.nickname-state a {
+    color: black;
+}
+
+.author-comment a {
+    color: black;
 }
