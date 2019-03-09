@@ -1,4 +1,4 @@
-<?
+﻿<?
 $title = "Regist";
 require_once "../include/db.php";
 

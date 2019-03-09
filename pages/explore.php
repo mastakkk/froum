@@ -1,18 +1,14 @@
-<?
+﻿<?
 $title = "Explore";
 require_once "../include/db.php";
 require_once "../elements/header.php";
 ?>
 <!-- main explore open -->
 <main class="main-explore">
-          
 <?
 require_once "../elements/bar.php";
 
 $categories = getCategory_all();
-
-
-
 ?>
           
           <article class="explore-forum-title">
@@ -38,8 +34,8 @@ $categories = getCategory_all();
              ?>
               
           </article>
-      </main>
-      <!-- main explore close -->
+</main>
+<!-- main explore close -->
 <?
 require_once "../elements/footer.php";
 ?>

@@ -1,4 +1,4 @@
-<?
+﻿<?
 
 $title = "State";
 require_once "../include/db.php";

@@ -1,4 +1,4 @@
-<?
+﻿<?
 $title = "Login";
 require_once "../include/db.php";
 

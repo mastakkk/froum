@@ -1,4 +1,4 @@
-<?
+﻿<?
     $title = "Profile";
     require_once "../include/db.php";
     require_once "../elements/header.php";

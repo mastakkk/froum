@@ -1,4 +1,4 @@
-<?
+﻿<?
 require_once "../libs/rb.php";
 
 session_start();

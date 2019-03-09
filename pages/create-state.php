@@ -1,4 +1,4 @@
-<?
+﻿<?
     require_once "../include/db.php";
 
     if (isset($_POST["submit_create"])) {
