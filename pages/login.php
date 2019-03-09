@@ -1,5 +1,10 @@
 <?
+$title = "Login";
 require_once "../include/db.php";
+
+if (isset($_SESSION["logged_user"])) {
+    header("Location: profile.php?id_profile=".$_SESSION["logged_user"]->id);
+}
 
 if (isset($_POST['submit'])) {
 		
@@ -11,10 +16,7 @@ if (isset($_POST['submit'])) {
         
         if (password_verify($_POST['password'], $user->password) ) {
             $_SESSION["logged_user"] = $user;
-
-            $success = "Авторизован";
-            // header("Location: ../index.php");
-            // exit;
+            header("Location: profile.php?id_profile=".$_SESSION["logged_user"]->id."&block=posts");
         } else {
             $errors = "Неверный пароль";
         }
