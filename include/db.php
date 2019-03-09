@@ -1,4 +1,5 @@
 ﻿<?
+header("Content-Type: text/html; charset=utf-8");
 require_once "../libs/rb.php";
 
 session_start();
