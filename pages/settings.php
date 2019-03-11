@@ -6,6 +6,10 @@
     // }
     require_once "../elements/header.php";
     
+    if ($_GET["block"] == false) {
+        $_GET["block"] = "profile";
+    }
+
     if (isset($_POST["submit_change"])) {
         $change_profile = R::dispense("users");
 
@@ -18,6 +22,9 @@
         }
         if (!empty($_POST["change_password"])) {
             $change_profile->password = password_hash($_POST["change_password"], PASSWORD_DEFAULT);
+        }
+        if (!empty($_POST["change_status"])) {
+            $change_profile->status = htmlspecialchars($_POST["change_status"]);
         }
         if (!empty($_FILES['change_img'])) {
             $file_name = $_FILES['change_img']['name'];
@@ -68,6 +75,9 @@
                         <p>Email: </p>
                         <input type="text" name="change_email">
                         
+                        <p>Status: </p>
+                        <input type="text" name="change_status">
+
                         <p>Password</p>
                         <input type="password" name="change_password">
                         

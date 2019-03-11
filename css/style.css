@@ -192,6 +192,7 @@ font-size: 90px;
 /*footer open*/
 footer {
     margin: 50px 0 0 0;
+    justify-self: center;
 }
 .grid-footer {
     
@@ -202,7 +203,7 @@ footer {
 }
 
 .footer-text {
-    margin: 10px 0 0 37%;
+    margin: 10px 0 0 0;
 }
 
 
