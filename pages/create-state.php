@@ -45,8 +45,8 @@
                     <textarea type="text" name="title" placeholder="Название статьи" cols="35" rows="1" maxlength="121"></textarea>
 
                     <div class="img-form img-settings">
-                            <input type="file" name="image">
-                            <img src="/img/1.png" alt="">
+                        <input type="file" name="image">
+                        <img src="/img/1.png" alt="">
                     </div>
                     <div class="under-from"><br>
                         <h6>Выберите категорию</h6>

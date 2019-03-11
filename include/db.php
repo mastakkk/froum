@@ -162,7 +162,6 @@ function getUser($id) {
 
 // Определяет привилегию
 function getPrivilege_for_user($user) {
-	$user_privilege = "";
 	if ($user->privilege == 1) {
 		$user_privilege = "Пользователь";
 	} elseif ($user->privilege == 2) {
@@ -223,5 +222,9 @@ function getComm_by_id($user) {
 	$getcomm = R::find('comments', "WHERE id_user = $user");
 	return $getcomm;
 }
+
+
+
+	
 
 ?>
