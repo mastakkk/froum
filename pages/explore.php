@@ -6,9 +6,17 @@ require_once "../elements/header.php";
 <!-- main explore open -->
 <main class="main-explore">
           
-<?
-require_once "../elements/bar.php";
 
+        <article class="menu-explore">
+            <div class="menu-explore-title">
+                <a href="explore.php">Explore Forum</a> - <?=$category->category_name?>
+            </div>
+
+           <?
+           require_once "../elements/bar.php";
+           ?>
+        </article>
+<?
 $categories = getCategory_all();
 
 

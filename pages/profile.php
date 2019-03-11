@@ -5,7 +5,8 @@
 
     $user_profile = getUser($_GET["id_profile"]);
 
-    $user_privilege = getPrivilege_for_user($_SESSION["logged_user"]);
+    $user_privilege = getPrivilege_for_user($user_profile);
+
 
     if ($_GET["block"] == false) {
         $_GET["block"] = "posts";
