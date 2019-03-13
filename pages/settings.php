@@ -103,8 +103,42 @@
                     </div>
                     <div class="right-side-settings">
                         <?$getstates = getStates_for_one_user($user->id);
-                        foreach ($getstates as $getstate) {?>
+                        foreach ($getstates as $getstate) {
+                            $count_comments = getCount_comments($getstate->id);
+                            ?>
+                            <article class="state post-state">
+                                <div class="state-under post-state-under">
+                                    <div class="state-user">
+                                        <div class="img-for-single img-for-post">
+                                            <a href="profile.php?id_profile=<?=$user->id?>"><img src="<?=$user->img?>" alt=""></a>
+                                        </div>
+                                        <div class="under-state-user under-post-user" >
+                                            <div class="nickname-state"><a href="profile.php?id_profile=<?=$user->id?>"><?=$user->login?></a></div>
+                                            <div class="data-state"><?=$getstate->date?></div>
+                                        </div>
+                                        <div>
+                                            <a href="reduct.php?id_state=<?=$getstate->id?>"><button>Редактировать стр</button></a>
+                                        </div>
+                                    </div>
+                                    <div class="title-under-state"><?=$getstate->title?></div>
+                                    <a href="state.php?id_single=<?=$getstate->id?>">
+                                            <div class="text-under-state"><?
 
+                                            if (strpos($getstate->text, "<br>") == true) {
+                                                echo htmlspecialchars(substr($getstate->text, 0, strpos($getstate->text, "<br>")));
+                                            } else { 
+                                                echo htmlspecialchars($getstate->text);
+                                            }
+                                            
+                                            ?></div>
+                                    </a>
+                                </div>
+                                <div class="footer-state">
+                                    <div><?=$count_comments?> comments</div>
+                                    <div><?=$getstate->views?> views</div>
+                                    <div><?=$getstate->likes?> likes</div>
+                                </div>
+                            </article>
                         <?}?>
                     </div>
                 </article>

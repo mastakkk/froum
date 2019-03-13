@@ -224,6 +224,12 @@ function getComm_by_id($user) {
 }
 
 
+// Находим под комментарии
+function getUnder_comm($id) {
+	$under_comm = R::find('undercomments', "WHERE id_comment = $id");
+	return $under_comm;
+}
+
 
 	
 

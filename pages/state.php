@@ -28,6 +28,28 @@ if (isset($_POST["create_comment_submit"])) {
     }
 }
 
+if (isset($_POST["submit_under"])) {
+    $errors_under_comment = "";
+
+    if (empty($_POST["text_under"])) {
+        $errors_under_comment = "Поле не заполнено";
+    }
+
+    if (empty($errors_under_comment)) {
+        $under_comm = R::dispense('undercomments');
+
+        $under_comm->id_user = $_SESSION["logged_user"]->id;
+        $under_comm->text = $_POST["text_under"];
+        $under_comm->id_comment = $_GET["id_comm"];
+
+        R::store($under_comm);
+
+        header("Location: state.php?id_single=".$single->id);
+    }
+
+}
+
+
 require_once "../elements/header.php";?>
 
 <main class="main-explore ">
@@ -100,10 +122,10 @@ require_once "../elements/bar.php";
                            <div class="data-state"><?=$single->date?></div>
                        </div>
                        <div>
-                           <img src="/img/флажок.png" alt="">
+                           <img src="/img/flag.png" alt="">
                        </div>
                        <div>
-                           <img src="/img/триточки.png" alt="">
+                           <img src="/img/three.png" alt="">
                        </div>
                    </div>
                    <div class="title-under-state"><?=$single->title?></div>
@@ -171,6 +193,47 @@ require_once "../elements/bar.php";
                         <div class="text-comment">
                             <p><?=$comment->text?></p>
                         </div>
+
+                        <div class="get--comment">
+                            <p class="text-get--comment"><a href="state.php?id_single=<?=$single->id?>&id_comm=<?=$comment->id?>">Ответить на комментарий</a></p>
+                        </div>
+
+                        <?
+                        if (isset($_GET["id_comm"]) & $comment->id == $_GET["id_comm"]) {?>
+                            <div class="form--comment">
+                                <form action="" method="post">
+                                    <p>Напишите комментарий</p>
+                                    <input type="text" name="text_under" value="<?=$errors_under_comment?>" placeholder="Вводи тут..." class="input--comment">
+                                    <input type="submit" name="submit_under"class="submit--comment" style="cursor: pointer;">
+                                </form>
+                            </div>
+                        <?} ?>
+
+                        <!-- Under comment -->
+                        <?
+                        $under_comms = getUnder_comm($comment->id);
+                        foreach ($under_comms as $under_comm) {
+                            $user_under_comment = getUser($under_comm->id_user);
+                            ?>
+                            <div class="under--comment">
+                                <div class="grid-under--comment">
+                                    <div></div>
+                                    <div class="main--border"></div>
+                                    <div></div>
+                                    <div style="border-left: 1px solid #000; margin-top: -25px; z-index: 1;"></div>
+                                </div>
+                                <div class="content--comment">
+                                    <div class="img-for-single img--comment">
+                                        <a href="profile.php?id_profile=<?=$user_under_comment->id?>"><img src="<?=$user_under_comment->img?>" alt=""></a>
+                                    </div>
+                                    <p><a href="profile.php?id_profile=<?=$user_under_comment->id?>"><?=$user_under_comment->login?></a></p>
+                                    <div class="text--comment">
+                                        <p><?=$under_comm->text?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?} ?>
+                        <!-- Under comment close-->
                     </div>
                 </article>
             <?}?>
