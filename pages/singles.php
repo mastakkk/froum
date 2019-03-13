@@ -52,58 +52,66 @@ views_update_category($category->id);
 		$p = isset($_GET["page"]) ? (int) $_GET["page"] : 0;
 		$count = 4;
 		$len = floor($pages / $count);
-		
-		foreach ($singles as $single) {
-            $user = GetUser($single->id_user);
-            $count_comments = getCount_comments($single->id);
-			?>
-			<article class="state">
-				<div class="state-under">
-					<div class="state-user">
-						<div class="img-for-single">
-							<a href="profile.php?id_profile=<?=$user->id?>"><img src="<?=$user->img?>" alt=""></a>
-						</div>
-						<div class="under-state-user">
-							<div class="nickname-state"><a href="profile.php?id_profile=<?=$user->id?>"><?=$user->login?></a></div>
-							<div class="data-state"><?=$single->date?></div>
-						</div>
-						<div>
-							<img src="/img/flag.png" alt="">
-						</div>
-						<div>
-							<img src="/img/three.png" alt="">
-						</div>
-					</div>
-					<div class="title-under-state"><?=$single->title?></div>
-					<a href="state.php?id_single=<?=$single->id?>">
-							<div class="text-under-state"><?
 
-							if (strpos($single->text, "<br>") == true) {
-								echo htmlspecialchars(substr($single->text, 0, strpos($single->text, "<br>")));
-							} else { 
-								echo htmlspecialchars($single->text);
-							}
-							
-							?></div>
-					</a>
-				</div>
-				<div class="img-state">
-					<img src="<?=$single->img_preview?>" alt="">
-				</div>
-				<div class="footer-state">
-					<div><?=$count_comments?> comments</div>
-					<div><?=$single->views?> views</div>
-					<div><?=$single->likes?> likes</div>
-				</div>
-			</article>
-		<?}            ?> 
+		$first = $p*$count;
+		$second = ($p+1)*$count;
+		
+		$new_singles = R::find('singles', "WHERE id_category = $category->id LIMIT $first, $second");
+
+		foreach ($new_singles as $new_single) {
+				$user = GetUser($new_single->id_user);
+				$count_comments = getCount_comments($new_single->id);
+				?>
+				<article class="state">
+					<div class="state-under">
+						<div class="state-user">
+							<div class="img-for-single">
+								<a href="profile.php?id_profile=<?=$user->id?>"><img src="<?=$user->img?>" alt=""></a>
+							</div>
+							<div class="under-state-user">
+								<div class="nickname-state"><a href="profile.php?id_profile=<?=$user->id?>"><?=$user->login?></a></div>
+								<div class="data-state"><?=$new_single->date?></div>
+							</div>
+							<div>
+								<img src="/img/flag.png" alt="">
+							</div>
+							<div>
+								<img src="/img/three.png" alt="">
+							</div>
+						</div>
+						<div class="title-under-state"><?=$new_single->title?></div>
+						<a href="state.php?id_single=<?=$new_single->id?>">
+								<div class="text-under-state"><?
+	
+								if (strpos($new_single->text, "<br>") == true) {
+									echo htmlspecialchars(substr($new_single->text, 0, strpos($new_single->text, "<br>")));
+								} else { 
+									echo htmlspecialchars($new_single->text);
+								}
+								
+								?></div>
+						</a>
+					</div>
+					<div class="img-state">
+						<img src="<?=$new_single->img_preview?>" alt="">
+					</div>
+					<div class="footer-state">
+						<div><?=$count_comments?> comments</div>
+						<div><?=$new_single->views?> views</div>
+						<div><?=$new_single->likes?> likes</div>
+					</div>
+				</article>
+			<?}            ?> 
+	
+		
+
 
            
 <!-- navigation open -->
            <article class="navigation">
             <ul>
             <? for($i = 0; $i <= $len; $i++) { ?>
-                <li><a href="?id_category=<?=$category->id?>?page=<?=$i?>"><?= $i + 1?></a></li>
+                <li><a href="?id_category=<?=$category->id?>&page=<?=$i?>"><?=$i+ 1?></a></li>
             <? } ?>
             </ul>
            </article>
