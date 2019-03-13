@@ -3,8 +3,6 @@
     margin: 0 auto;
 }
 
-.profile div {
-}
 
 .img-for-profile img{
     width: 170px;
@@ -140,7 +138,7 @@
 
 .comment {
     padding: 0 0 10px 0;
-    margin: 0 0 0 0;
+    margin: 0 0 10px 0;
 }
 
 .under-comment {
@@ -183,4 +181,131 @@
 .submit-reduct {
     cursor: pointer;
     width: 100px;
+}
+
+
+.state-user {
+    position: relative;
+}
+.state-user div button {
+    position: absolute;
+    right: 30px;
+    background: #fff;
+    border: 1px solid #000;
+}
+
+.post-state {
+    width: 600px;
+}
+
+.post-state-under {
+    width: auto;
+}
+
+.under-post-user {
+    width: 300px;
+    margin: 0 0 0 45px;
+}
+
+.img-for-post {
+    margin: 5px 0 0 0;
+}
+.get--comment {
+    width: 700px;
+    border-bottom: 1.5px solid #000;
+    background: #fff;
+    color: black;
+    font: italic 14px 'Open Sans', sans-serif;
+    text-align: right;
+}
+
+
+.get--comment p a:enabled {
+    color: black;
+}
+
+.under--comment {
+    height: auto;
+    margin: 0 0 0 0;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    
+}
+
+.under--comment div {
+    background: #fff;
+    
+}
+
+.grid-under--comment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 25px auto;
+}
+
+
+.img--comment {
+    width: auto;
+    margin: 3px 0 0 0;
+    z-index: 3;
+}
+.img--comment img{
+    height: auto;
+    max-width: 50px;
+    display: block;
+    
+}
+
+.content--comment {
+    color: black;
+    border-bottom: 1px solid #000;
+}
+
+.content--comment p {
+    margin: 21px 0 0 60px;
+    
+}
+
+.content--comment a {
+    color: black;
+}
+
+.text--comment {
+    margin: 25px 0 10px 10px;
+    color: black;
+    font-size: 12px;
+}
+
+.text--comment p {
+    margin: 0;
+}
+
+.main--border {
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 3px solid #fff;
+    border-top: 3px solid #fff;
+    border-radius: 10px;
+    z-index: 2;
+    
+}
+
+.form--comment {
+    margin: 10px 0 10px 0;
+    background: #fff;
+    color: black;
+    position: relative;
+}
+
+
+.input--comment {
+    padding: 0 220px 30px 0;
+    font-size: 12px;
+}
+
+.submit--comment {
+    position: absolute;
+    top: 60px;
+    right: 238px;
 }

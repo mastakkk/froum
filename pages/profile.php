@@ -63,7 +63,10 @@
             
             <? if ($_GET["block"] == 'posts') {
                 $getstates = getStates_for_one_user($user_profile->id);
-                foreach ($getstates as $getstate) {?>
+
+                foreach ($getstates as $getstate) {
+                    $count_comments = getCount_comments($getstate->id);
+                    ?>
                     <article>
                         <div class="state">
                             <div class="state-under">
@@ -97,7 +100,7 @@
                                 <img src="<?=$getstate->img_preview?>" alt="">
                             </div>
                             <div class="footer-state">
-                                <div><?=$getstate->comments?> comments</div>
+                                <div><?=$count_comments?> comments</div>
                                 <div><?=$getstate->views?> views</div>
                                 <div><?=$getstate->likes?> likes</div>
                             </div>
@@ -109,6 +112,7 @@
                 foreach ($yes_getlikes as $yes_getlike) {
                     $getlike = getSingle_by_id($yes_getlike->id_single);
                     $getuser_by_like = getUser($getlike->id_user);
+                    $count_comments = getCount_comments($getlike->id);
                     ?>
                     <article>
                         <div class="state">
@@ -142,7 +146,7 @@
                                 <img src="<?=$getlike->img_preview?>" alt="">
                             </div>
                             <div class="footer-state">
-                                <div><?=$getlike->comments?> comments</div>
+                                <div><?=$count_comments?> comments</div>
                                 <div><?=$getlike->views?> views</div>
                                 <div><?=$getlike->likes?> likes</div>
                             </div>
