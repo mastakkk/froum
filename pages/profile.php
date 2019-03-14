@@ -62,7 +62,16 @@
             </article>
             
             <? if ($_GET["block"] == 'posts') {
-                $getstates = getStates_for_one_user($user_profile->id);
+
+                $count_getstate = R::count('singles', "WHERE id_user = $user_profile->id");
+                $p = isset($_GET["page"]) ? (int) $_GET["page"] : 0;
+                $count = 4;
+                $len = floor($count_getstate / $count);
+
+                $first = $p*$count;
+                $second = ($p+1)*$count;
+                
+                $getstates = R::find('singles', "WHERE id_user = $user_profile->id LIMIT $first, $second");
 
                 foreach ($getstates as $getstate) {
                     $count_comments = getCount_comments($getstate->id);
@@ -106,9 +115,30 @@
                             </div>
                         </div>
                     </article>
-                <?}
-            } elseif ($_GET["block"] == 'likes') {
-                $yes_getlikes = getLikes_for_one_user($user_profile->id);
+                <?}?>
+                <!-- navigation open -->
+                <article class="navigation">
+                 <ul>
+                 <? for($i = 0; $i <= $len; $i++) { ?>
+                     <li><a href="profile.php?id_profile=1&block=posts&page=<?=$i?>"><?=$i+ 1?></a></li>
+                 <? } ?>
+                 </ul>
+                </article>
+                <!-- navigation close -->
+            <?} elseif ($_GET["block"] == 'likes') {
+                // $yes_getlikes = getLikes_for_one_user($user_profile->id);
+                
+
+                $count_getstate = R::count('singles', "WHERE id_user = $user_profile->id");
+                $p = isset($_GET["page"]) ? (int) $_GET["page"] : 0;
+                $count = 4;
+                $len = floor($count_getstate / $count);
+
+                $first = $p*$count;
+                $second = ($p+1)*$count;
+                
+                $yes_getlikes = R::find('likes', "WHERE id_user_id = $user_profile->id LIMIT $first, $second");
+
                 foreach ($yes_getlikes as $yes_getlike) {
                     $getlike = getSingle_by_id($yes_getlike->id_single);
                     $getuser_by_like = getUser($getlike->id_user);
@@ -152,9 +182,29 @@
                             </div>
                         </div>
                     </article>
-                <?}
-            } elseif ($_GET["block"] == 'comments') {
-                $getcomms = getComm_by_id($user_profile->id);
+                <?}?>
+                <!-- navigation open -->
+                <article class="navigation">
+                 <ul>
+                 <? for($i = 0; $i <= $len; $i++) { ?>
+                     <li><a href="profile.php?id_profile=1&block=likes&page=<?=$i?>"><?=$i+ 1?></a></li>
+                 <? } ?>
+                 </ul>
+                </article>
+                <!-- navigation close -->
+            <?} elseif ($_GET["block"] == 'comments') {
+
+                $count_getstate = R::count('singles', "WHERE id_user = $user_profile->id");
+                $p = isset($_GET["page"]) ? (int) $_GET["page"] : 0;
+                $count = 6;
+                $len = floor($count_getstate / $count);
+
+                $first = $p*$count;
+                $second = ($p+1)*$count;
+
+                $getcomms = R::find('comments', "WHERE id_user = $user_profile->id LIMIT $first, $second");
+
+                // $getcomms = getComm_by_id($user_profile->id);
                 foreach ($getcomms as $getcomm) {?>
                     <article class="comment">
                         <div class="under-comment">
@@ -181,8 +231,17 @@
                             </div>
                         </div>
                     </article>
-                <?}
-            }
+                <?}?>
+                <!-- navigation open -->
+                <article class="navigation">
+                    <ul>
+                    <? for($i = 0; $i <= $len; $i++) { ?>
+                        <li><a href="profile.php?id_profile=1&block=comments&page=<?=$i?>"><?=$i+ 1?></a></li>
+                    <? } ?>
+                    </ul>
+                </article>
+                <!-- navigation close -->
+            <?}
             ?>
             
         </main>
