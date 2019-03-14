@@ -1,17 +1,23 @@
 <?
     $title = "Profile";
     require_once "../include/db.php";
-    require_once "../elements/header.php";
 
     $user_profile = getUser($_GET["id_profile"]);
-
+    
     $user_privilege = getPrivilege_for_user($user_profile);
 
-
+    if (isset($_GET["comm"])) {
+        $comm = $_GET["comm"];
+        $delete_comm = R::findOne('comments', "WHERE id = $comm");
+    
+        R::trash($delete_comm);
+        header("Location: profile.php?id_profile=".$user_profile->id."&block=comments");
+    }
     if ($_GET["block"] == false) {
         $_GET["block"] = "posts";
     }
 
+    require_once "../elements/header.php";
 ?>
         <main class="profile">
             <article class="real-profile">
@@ -221,7 +227,7 @@
                                 <?
                                 if ($SESSION["logged_user"]->id == $getcomm->id_user || $_SESSION["logged_user"]->privilege == 3 || $_SESSION["logged_user"]->privilege == 2) {?>
                                     <form action="" method="post">
-                                        <button type="submit" name="delete_comment"><a href="state.php?id_single=<?=$single->id?>&comm=<?=$getcomm->id?>">Удалить</a></button>
+                                        <button type="submit" name="delete_comment"><a href="profile.php?id_profile=<?=$user_profile->id?>&comm=<?=$getcomm->id?>&block=comments">Удалить</a></button>
                                     </form>
                                 <?}?>
 
