@@ -1,3 +1,9 @@
+<?
+    if (isset($_GET["search"]) & $title != "Search") {
+        header("Location: search.php?search=".$_GET["search"]);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

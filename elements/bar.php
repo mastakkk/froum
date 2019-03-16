@@ -1,7 +1,9 @@
 <!-- search bar -->
-<div class="search">
+                <div class="search">
                     <div class="container">
-                        <input type="text"placeholder="Search..">
+                        <form action="" method="GET">
+                            <input type="text" name="search" placeholder="Search..">
+                        </form>
                         <div class="search"></div>
                     </div>
                 </div>

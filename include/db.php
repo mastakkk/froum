@@ -230,7 +230,11 @@ function getUnder_comm($id) {
 	return $under_comm;
 }
 
-
+// Поиск записей
+function getSearch($text) {
+	$search = R::findOne('singles', "WHERE title LIKE %$text%");
+	return $search;
+}
 	
 
 ?>
