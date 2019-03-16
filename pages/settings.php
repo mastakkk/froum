@@ -39,7 +39,7 @@
             if ($file_size > 2097152) {
                 $errors_img = "Картинка не должна превышать 2 мб";
             }
-            if (empty($errors_img)) {
+            if ($errors_img != "") {
                 move_uploaded_file($file_tmp, "../img/".$file_name);
     
                 $change_profile->img = "/img/".$file_name;

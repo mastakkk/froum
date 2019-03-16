@@ -46,13 +46,15 @@ if (isset($_POST["submit"])) {
         $reduct_state->id_category = $_POST["reduct_list"];
         $reduct_state->text = $_POST["reduct_text"];
         if (isset($_FILES['reduct_img'])) {
-            $reduct_state->img_preview = "/img/".$_FILES['reduct_img']['name'];
+            if ($errors_img == "") {
+                $reduct_state->img_preview = "/img/".$_FILES['reduct_img']['name'];
+            }
         } else {
             $reduct_state->img_preview = $single->img_preview;
         }
 
         R::store($reduct_state);
-        header("Location: state.php?id_single=".$single->id);
+        // header("Location: state.php?id_single=".$single->id);
     }
 }
 
