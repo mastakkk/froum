@@ -75,21 +75,22 @@ a {
 
 .image-slider h1 {
     width: 370px;
-    margin: 100px 0 0 40%;
+    margin: 100px auto 0 auto;
     font: bold 40px 'Open Sans', sans-serif;
     text-align: center;
 }
 
 .image-slider p {
-    margin: 34px 0 0 46%;
+    margin: 34px auto 0 auto;
     font: 18px 'Open Sans', sans-serif;
+    text-align: center;
 }
 /*article one close*/
 
 /*article two open*/
 .explore h1 {
     width: 330px;
-    margin: 100px 0 0 41%;
+    margin: 100px auto 0 auto;
     font: bold 40px 'Open Sans', sans-serif;
     text-align: center;
 }
@@ -97,14 +98,16 @@ a {
 .explore p {
     width: 600px;
     font: 18px 'Open Sans', sans-serif;
-    margin: 20px 0 0 33%;
+    margin: 20px auto 0 auto;
     text-align: center;
 }
 
 .read-more {
     display: block;
     width: 100px;
-    margin: 26px 0 0 47%;
+    margin: 26px auto 0 auto;
+    text-align: center;
+
 }
 /*article two close*/
 
