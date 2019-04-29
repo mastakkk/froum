@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
 
 
     if (empty($errors_regist)) {
-        $user = R::dispense("users");
+        $user = R::dispense('users');
 
         $user->login = $_POST["login"];
         $user->email = $_POST["email"];
@@ -33,6 +33,7 @@ if (isset($_POST["submit"])) {
         $user->img = "/img/img-user.jpg";
         $user->ip = $_SERVER["REMOTE_ADDR"];
         $user->privilege = 1;
+        $user->status = "Nothing :c";
 
         
         R::store($user);
@@ -67,10 +68,10 @@ require_once "../elements/header.php";
                }
                ?>
                <form action="" method="post" class="this-form">
-                   <input type="text" name="login" class="" placeholder="Login">
-                   <input type="text" name="email" class="" placeholder="Email">
-                   <input type="password" name="password" class="" placeholder="Password">
-                   <input type="password" name="second_password" class="" placeholder=" Repeat password">
+                   <input type="text" name="login"  placeholder="Login">
+                   <input type="text" name="email"  placeholder="Email">
+                   <input type="password" name="password"  placeholder="Password">
+                   <input type="password" name="second_password"placeholder=" Repeat password">
                    <input type="submit" name="submit" class="submit">
                </form>
             </div>

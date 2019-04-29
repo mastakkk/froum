@@ -1,3 +1,4 @@
+
 <?
     $title = "Settings";
     require_once "../include/db.php";
@@ -44,6 +45,7 @@
     
                 $change_profile->img = "/img/".$file_name;
             }
+            $change_profile->img = "/img/".$file_name;
         }
 
 
