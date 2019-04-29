@@ -126,7 +126,7 @@
                 <article class="navigation">
                  <ul>
                  <? for($i = 0; $i <= $len; $i++) { ?>
-                     <li><a href="profile.php?id_profile=1&block=posts&page=<?=$i?>"><?=$i+ 1?></a></li>
+                     <li><a href="profile.php?id_profile=<?=$user_profile->id?>&block=posts&page=<?=$i?>"><?=$i+ 1?></a></li>
                  <? } ?>
                  </ul>
                 </article>
@@ -193,7 +193,7 @@
                 <article class="navigation">
                  <ul>
                  <? for($i = 0; $i <= $len; $i++) { ?>
-                     <li><a href="profile.php?id_profile=1&block=likes&page=<?=$i?>"><?=$i+ 1?></a></li>
+                     <li><a href="profile.php?id_profile=<?=$user_profile->id?>&block=likes&page=<?=$i?>"><?=$i+ 1?></a></li>
                  <? } ?>
                  </ul>
                 </article>
@@ -242,7 +242,7 @@
                 <article class="navigation">
                     <ul>
                     <? for($i = 0; $i <= $len; $i++) { ?>
-                        <li><a href="profile.php?id_profile=1&block=comments&page=<?=$i?>"><?=$i+ 1?></a></li>
+                        <li><a href="profile.php?id_profile=<?=$user_profile->id?>&block=comments&page=<?=$i?>"><?=$i+ 1?></a></li>
                     <? } ?>
                     </ul>
                 </article>
