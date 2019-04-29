@@ -1,4 +1,3 @@
-
 <?
     $title = "Settings";
     require_once "../include/db.php";
